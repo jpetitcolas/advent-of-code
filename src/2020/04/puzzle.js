@@ -1,16 +1,30 @@
 const { isNil } = require('lodash');
 
-const parsePassports = inputs => inputs.split("\n\n")
-    .map(rawPassport =>
-        Array.from(rawPassport.matchAll(/(?<field>\w+):(?<value>[\w|#]+)/g))
-            .reduce((passport, { groups: { field, value }}) => ({
+const parsePassports = (inputs) =>
+    inputs.split('\n\n').map((rawPassport) =>
+        Array.from(
+            rawPassport.matchAll(/(?<field>\w+):(?<value>[\w|#]+)/g)
+        ).reduce(
+            (passport, { groups: { field, value } }) => ({
                 ...passport,
-                [field]: value
-            }), {})
-    )
+                [field]: value,
+            }),
+            {}
+        )
+    );
 
 const isValid = (passport, fullCheck = false) => {
-    if(['ecl', 'pid', 'eyr', 'hcl', 'byr', 'iyr', 'hgt'].some(requiredField => isNil(passport[requiredField]))) {
+    if (
+        [
+            'ecl',
+            'pid',
+            'eyr',
+            'hcl',
+            'byr',
+            'iyr',
+            'hgt',
+        ].some((requiredField) => isNil(passport[requiredField]))
+    ) {
         return false;
     }
 
@@ -37,7 +51,7 @@ const isValid = (passport, fullCheck = false) => {
             return false;
         }
 
-        const height = parseInt(hgt);
+        const height = parseInt(hgt, 10);
         if (hgt.endsWith('cm')) {
             if (height < 150 || height > 193) {
                 return false;
@@ -64,16 +78,16 @@ const isValid = (passport, fullCheck = false) => {
     }
 
     return (
-        numberKeys === 7
-        ||
-        numberKeys === 8 && passport.hasOwnProperty('cid')
+        // eslint-disable-next-line no-prototype-builtins
+        numberKeys === 7 || (numberKeys === 8 && passport.hasOwnProperty('cid'))
     );
 };
 
-exports.firstPuzzle = inputs => parsePassports(inputs.join('\n'))
-    .filter(passport => isValid(passport))
-    .length;
+exports.firstPuzzle = (inputs) =>
+    parsePassports(inputs.join('\n')).filter((passport) => isValid(passport))
+        .length;
 
-exports.secondPuzzle = inputs => parsePassports(inputs.join('\n'))
-    .filter(passport => isValid(passport, true))
-    .length;
+exports.secondPuzzle = (inputs) =>
+    parsePassports(inputs.join('\n')).filter((passport) =>
+        isValid(passport, true)
+    ).length;

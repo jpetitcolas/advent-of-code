@@ -1,4 +1,4 @@
-const { firstPuzzle, secondPuzzle } = require("./puzzle");
+const { firstPuzzle, secondPuzzle } = require('./puzzle');
 
 it('should get correct output', () => {
     const inputs = ['1721', '979', '366', '299', '675', '1456'];

@@ -1,4 +1,4 @@
-const { firstPuzzle, secondPuzzle } = require("./puzzle");
+const { firstPuzzle, secondPuzzle } = require('./puzzle');
 
 describe('2020-12-03', () => {
     const inputs = `
@@ -13,7 +13,10 @@ describe('2020-12-03', () => {
         #.##...#...
         #...##....#
         .#..#...#.#
-    `.split('\n').map(t => t.trim()).filter(x => x);
+    `
+        .split('\n')
+        .map((t) => t.trim())
+        .filter((x) => x);
 
     describe('First Part', () => {
         it('should get correct output', () => {

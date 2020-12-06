@@ -4,10 +4,11 @@ const getNumberTreesForSlope = (slopeX, slopeY) => (inputs) => {
 
     const numberRepeats = Math.ceil(requiredMapWidth / inputs[0].length);
 
-    const fullMap = inputs.map(row => row.repeat(numberRepeats));
+    const fullMap = inputs.map((row) => row.repeat(numberRepeats));
 
     let numberTrees = 0;
-    let x = 0, y = 0;
+    let x = 0;
+    let y = 0;
 
     let location;
     do {
@@ -29,10 +30,14 @@ const getNumberTreesForSlope = (slopeX, slopeY) => (inputs) => {
 
 exports.firstPuzzle = getNumberTreesForSlope(3, 1);
 
-exports.secondPuzzle = (inputs) => [
-    [1, 1],
-    [3, 1],
-    [5, 1],
-    [7, 1],
-    [1, 2]
-].reduce((product, slope) => product * getNumberTreesForSlope(...slope)(inputs), 1);
+exports.secondPuzzle = (inputs) =>
+    [
+        [1, 1],
+        [3, 1],
+        [5, 1],
+        [7, 1],
+        [1, 2],
+    ].reduce(
+        (product, slope) => product * getNumberTreesForSlope(...slope)(inputs),
+        1
+    );

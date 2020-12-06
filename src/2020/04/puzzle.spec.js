@@ -1,5 +1,5 @@
 const { parseInputsFromString } = require('../../getInputs');
-const { firstPuzzle, secondPuzzle } = require("./puzzle");
+const { firstPuzzle, secondPuzzle } = require('./puzzle');
 
 describe('2020-12-04', () => {
     const inputs = parseInputsFromString(`
@@ -40,7 +40,7 @@ describe('2020-12-04', () => {
                 hgt:59cm ecl:zzz
                 eyr:2038 hcl:74454a iyr:2023
                 pid:3556412378 byr:2007
-            `)
+            `);
             expect(secondPuzzle(invalidPassports)).toBe(0);
 
             const validPassports = parseInputsFromString(`
@@ -56,7 +56,7 @@ describe('2020-12-04', () => {
                 eyr:2022
 
                 iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719
-            `)
+            `);
             expect(secondPuzzle(validPassports)).toBe(4);
         });
     });
