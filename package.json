@@ -25,6 +25,6 @@
   "dependencies": {
     "d3-array": "^2.9.0",
     "esm": "^3.2.25",
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.21"
   }
 }
